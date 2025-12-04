@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de José Acevedo - Programador Web Junior en Venezuela">
+    <title>José Acevedo | Desarrollador Web</title>
+    <!-- Fuente moderna de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE COLOR (Minimalista) --- */
+        :root {
+            --primary: #2563eb; /* Azul confiable */
+            --dark: #1e293b; /* Gris muy oscuro para texto */
+            --light: #f8fafc; /* Fondo claro */
+            --white: #ffffff;
+            --gray: #64748b; /* Texto secundario */
+            --whatsapp: #25D366; /* Color WhatsApp */
+        }
+
+        /* --- RESET BÁSICO --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- NAVEGACIÓN --- */
+        header {
+            background-color: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* --- SECCIÓN HERO (Presentación) --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            padding-top: 80px; /* Espacio para el navbar fijo */
+            background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .hero-text span {
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-3px);
+        }
+
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .img-frame {
+            width: 350px;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Forma orgánica */
+            box-shadow: 10px 10px 30px rgba(37, 99, 235, 0.2);
+            border: 5px solid var(--white);
+            position: relative;
+        }
+
+        .img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 10px auto 0;
+        }
+
+        /* --- SOBRE MÍ --- */
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            background-color: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .skills {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .skill-tag {
+            background-color: #e0f2fe;
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- SERVICIOS --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* --- PORTAFOLIO --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        /* Estilo específico para que el logo se vea bien */
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Cambiado a 'contain' para que el logo no se corte */
+            padding: 20px; /* Un poco de espacio alrededor del logo */
+            background-color: #fff; /* Fondo blanco para el logo */
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* --- CONTACTO --- */
+        .contact {
+            text-align: center;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            padding: 4rem 2rem;
+        }
+
+        .contact h2 {
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            background-color: var(--whatsapp); /* Verde WhatsApp */
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: #1ebc57;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        /* --- RESPONSIVE DESIGN (Móvil) --- */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            nav ul {
+                display: none; 
+            }
+            
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-container {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+            
+            .img-frame {
+                width: 280px;
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABECERA -->
+    <header>
+        <div class="logo">JoséDev.</div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Hola, soy José Acevedo<br><span>Desarrollador Web</span></h1>
+                <p>Estudiante de la UDO y Programador Junior. Ayudo a emprendedores en Venezuela a tener presencia digital con páginas web atractivas y funcionales a bajo costo.</p>
+                <a href="#contacto" class="btn">Solicitar Presupuesto</a>
+            </div>
+            
+            <div class="hero-img">
+                <div class="img-frame">
+                    <!-- Imagen de perfil del usuario -->
+                    <img src="imagenes/1000479509.jpg" alt="Foto de José Acevedo" id="profile-pic">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE MÍ -->
+    <section id="sobre-mi">
+        <h2 class="section-title">Sobre Mí</h2>
+        <div class="about-container">
+            <div>
+                <p>
+                    ¡Hola! Tengo 18 años y soy estudiante universitario de la <strong>Universidad de Oriente (UDO)</strong>.
+                </p>
+                <br>
+                <p>
+                    Me defino como un programador Junior apasionado. Aunque mis habilidades base son <strong>HTML, CSS y JavaScript</strong>, me encuentro en constante aprendizaje para pulir mis destrezas.
+                </p>
+                <br>
+                <p>
+                    Mi filosofía es simple: apoyar el emprendimiento local. Estoy dispuesto a ajustar mis servicios a <strong>presupuestos bajos</strong> para crear tu página web.
+                </p>
+                
+                <div class="skills">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Diseño Responsivo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios">
+        <h2 class="section-title">Mis Servicios</h2>
+        <div class="services-grid">
+            <!-- Servicio 1 -->
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Creación de Web Básica</h3>
+                <p>Diseño y desarrollo de sitios web para emprendimientos. Ideales para mostrar tus productos, ropa o servicios de forma profesional. Diseño adaptado a móviles (Responsive).</p>
+            </div>
+
+            <!-- Servicio 2 -->
+            <div class="card">
+                <div class="card-icon">🛠️</div>
+                <h3>Mantenimiento Exclusivo</h3>
+                <p>Este servicio es exclusivo para mis clientes: si yo te creo la página, te ofrezco el mantenimiento a un <strong>costo súper accesible</strong>.</p>
+            </div>
+
+            <!-- Servicio 3 -->
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Optimización</h3>
+                <p>Código limpio usando HTML, CSS y JS puro para que tu web cargue rápido y tus clientes no esperen.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos">
+        <h2 class="section-title">Mis Proyectos</h2>
+        <div class="portfolio-grid">
+            
+            <!-- Proyecto Venios -->
+            <div class="project-card">
+                <div class="project-img">
+                    <!-- Logo de Venios Clothing -->
+                   <img src="imagenes/1000476049.jpg" alt="Logo Venios Clothing">
+                </div>
+                <div class="project-info">
+                    <h3>Venios Clothing</h3>
+                    <p>Página web desarrollada para una marca de ropa emprendedora en Venezuela. Diseño minimalista enfocado en mostrar el catálogo de productos.</p>
+                    <p><small>Tecnologías: HTML, CSS, JS</small></p>
+                    <a href="https://veniosclothing-ops.github.io/vnzla/?fbclid=PAQ0xDSwOchA9leHRuA2FlbQIxMABzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacLy79yHPioYXIgY2fFCMjY8H5PMaYcYOGpDKjUhc_usJQOZgqdsFMyXZ5uBw_aem_85WZv8tzf8BtPzIVSr0Tbw" target="_blank" class="project-link">Ver sitio web &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Placeholder Proyecto Futuro -->
+            <div class="project-card">
+                <div class="project-img" style="background: #f1f5f9; display:flex; justify-content:center; align-items:center;">
+                    <span style="color:#94a3b8; font-size: 3rem;">?</span>
+                </div>
+                <div class="project-info">
+                    <h3>Tu Proyecto Aquí</h3>
+                    <p>¿Tienes una idea? Estoy listo para programar tu próximo sitio web y agregarlo a mi portafolio.</p>
+                    <a href="#contacto" class="project-link">Contáctame &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <div class="contact">
+            <h2>¿Listo para digitalizar tu negocio?</h2>
+            <p>Escríbeme para conversar sobre tu proyecto. Presupuestos ajustados a la realidad económica.</p>
+            
+            <!-- Botón de WhatsApp -->
+            <a href="https://wa.me/584249305395" class="contact-btn" target="_blank">
+                <!-- Icono SVG de WhatsApp simple -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+                Escribir al WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 José Acevedo. Hecho con código puro en Venezuela.</p>
+    </footer>
+
+    <script>
+        // Sombra en header al hacer scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.1)";
+            } else {
+                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.05)";
+            }
+        });
+        
+        // El script auxiliar para cargar imágenes ya no es necesario porque
+        // las rutas están puestas directamente en el HTML.
+    </script>
+</body>
+</html>
